@@ -45,4 +45,56 @@
 
 <script>
 
+    const starsContainerRef = document.querySelector('.stars-container');
+    const rating = document.querySelector('.rating');
+
+    starsContainerRef.addEventListener('click', e => {
+        const elementRef = e.target;
+
+        if (elementRef.classList.contains('star')) {
+            const idx = elementRef.getAttribute('data-index');
+
+            for (let i = 0; i < 5; i++)
+                starsContainerRef.children[i].classList.remove('selected');
+
+            for (let i = 0; i < idx; i++) {
+                starsContainerRef.children[i].classList.add('selected');
+            }
+
+            rating.innerText = idx;
+        }
+    })
+
+    starsContainerRef.addEventListener('mouseover', e => {
+        const elementRef = e.target;
+
+        if (elementRef.classList.contains('star')) {
+            const idx = elementRef.getAttribute('data-index');
+
+            for (let i = 0; i < 5; i++)
+                starsContainerRef.children[i].classList.remove('selected');
+
+            for (let i = 0; i < idx; i++) {
+                starsContainerRef.children[i].classList.add('selected');
+            }
+        }
+    })
+
+    starsContainerRef.addEventListener('mouseout', e => {
+        const elementRef = e.target;
+        const currRating = rating.innerText;
+
+        if (elementRef.classList.contains('star')) {
+            const idx = elementRef.getAttribute('data-index');
+
+            for (let i = 0; i < idx; i++) {
+                starsContainerRef.children[i].classList.remove('selected');
+            }
+
+            for (let i = 0; i < currRating; i++) {
+                starsContainerRef.children[i].classList.add('selected');
+            }
+        }
+    })
+
 </script>
